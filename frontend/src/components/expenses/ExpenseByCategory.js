@@ -94,6 +94,7 @@ export class ExpenseByCategory extends Component {
           layout={this.state.barLayout}
           data={this.state.graphData}
           keys={[
+            "auto",
             "rent",
             "electric",
             "gas",

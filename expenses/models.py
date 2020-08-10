@@ -9,7 +9,8 @@ CATEGORY_CHOICES = [
     ("insurance", "Insurance"),
     ("grocery", "Grocery"),
     ("other", "Other"),
-    ("bills", "Bills")
+    ("bills", "Bills"),
+    ("auto", "Auto")
 
 ]
 

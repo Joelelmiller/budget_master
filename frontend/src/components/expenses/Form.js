@@ -243,6 +243,7 @@ class Form extends Component {
                   onChange={this.onChange}
                 >
                   <MenuItem value={"rent"}>Rent</MenuItem>
+                  <MenuItem value={"auto"}>Auto</MenuItem>
                   <MenuItem value={"bills"}>Bills</MenuItem>
                   <MenuItem value={"electric"}>Electric</MenuItem>
                   <MenuItem value={"gas"}>Gas</MenuItem>
