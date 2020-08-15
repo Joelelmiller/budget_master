@@ -243,10 +243,16 @@ class Form extends Component {
                   onChange={this.onChange}
                 >
                   <MenuItem value={"rent"}>Rent</MenuItem>
-                  <MenuItem value={"bills"}>Bills</MenuItem>
                   <MenuItem value={"auto"}>Auto</MenuItem>
-                  <MenuItem value={"electric"}>Electric</MenuItem>
-                  <MenuItem value={"gas"}>Gas</MenuItem>
+                  <MenuItem value={"utilities"}>Utilities</MenuItem>
+                  <MenuItem value={"credit card"}>Credit Card</MenuItem>
+                  <MenuItem value={"credit card principle"}>
+                    Credit Card Principle
+                  </MenuItem>
+                  <MenuItem value={"transportation"}>Transportation</MenuItem>
+                  <MenuItem value={"entertainment"}>Entertainment</MenuItem>
+                  <MenuItem value={"bills"}>Bills</MenuItem>
+
                   <MenuItem value={"insurance"}>Insurance</MenuItem>
                   <MenuItem value={"grocery"}>Grocery</MenuItem>
                   <MenuItem value={"other"}>Other</MenuItem>
