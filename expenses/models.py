@@ -10,7 +10,12 @@ CATEGORY_CHOICES = [
     ("grocery", "Grocery"),
     ("other", "Other"),
     ("bills", "Bills"),
-    ("auto", "Auto")
+    ("auto", "Auto"),
+    ("utilities", "Utilities"),
+    ("credit card", "Credit Card"),
+    ("credit card principle", "Credit Card Principle"),
+    ("transportation", "Transportation"),
+    ("entertainment", "Entertainment"),
 
 ]
 
