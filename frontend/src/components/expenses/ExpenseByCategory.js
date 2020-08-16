@@ -9,10 +9,7 @@ export class ExpenseByCategory extends Component {
   state = {
     graphData: [],
   };
-  onChange = (e) => {
-    //console.log(e);
-    this.setState({ [e.target.name]: e.target.value });
-  };
+
   getExpenseYears = (expenses) => {
     const years = [];
 
