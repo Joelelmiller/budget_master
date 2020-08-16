@@ -122,11 +122,7 @@ export default function (state = initalState, action) {
         expenses: cancelledRecords,
         isUpdating: false,
       };
-    case SET_EXPENSE_SUMMARY_YEAR:
-      return {
-        ...state,
-        expenseSummaryYear: action.payload,
-      };
+
     default:
       return state;
   }
