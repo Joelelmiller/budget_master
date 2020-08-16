@@ -29,7 +29,6 @@ import { addExpense } from "../../actions/expenses";
 
 const styles = {
   root: {
-    maxWidth: 500,
     margin: "auto",
   },
   bullet: {

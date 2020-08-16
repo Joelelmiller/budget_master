@@ -6,7 +6,6 @@ export default function AddIncome() {
   return (
     <Fragment>
       <Form />
-      <Income />
     </Fragment>
   );
 }

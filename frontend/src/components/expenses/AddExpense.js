@@ -6,7 +6,6 @@ export default function AddExpense() {
   return (
     <Fragment>
       <Form />
-      <Expenses />
     </Fragment>
   );
 }

@@ -18,15 +18,7 @@ import ViewColumn from "@material-ui/icons/ViewColumn";
 import MaterialTable from "material-table";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import {
-  getIncomes,
-  deleteIncome,
-  editIncome,
-  updateIncome,
-  cancelEdit,
-  deletingIncome,
-  cancelDelete,
-} from "../../actions/incomes";
+import { getIncomes, deleteIncome, updateIncome } from "../../actions/incomes";
 
 export class Incomes extends Component {
   static propTypes = {
