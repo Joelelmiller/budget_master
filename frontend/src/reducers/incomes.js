@@ -120,11 +120,6 @@ export default function (state = initalState, action) {
         incomes: cancelledRecords,
         isUpdating: false,
       };
-    case SET_INCOME_SUMMARY_YEAR:
-      return {
-        ...state,
-        incomeSummaryYear: action.payload,
-      };
     default:
       return state;
   }
