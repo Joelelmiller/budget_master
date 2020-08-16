@@ -4,7 +4,7 @@ import GraphActions from "../../actions/GraphActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getExpenses } from "../../actions/expenses";
-import getYearSummary from "../common/GetYearSummary";
+import getYearSummary from "../common/getYearSummary";
 
 export class ExpenseByOwner extends Component {
   state = {

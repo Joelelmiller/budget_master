@@ -1,10 +1,9 @@
-import React, { Component, Fragment } from "react";
-import { withStyles } from "@material-ui/core/styles";
+import React, { Component } from "react";
 import ResponsiveBar from "../common/ResponsiveBar";
 import GraphActions from "../../actions/GraphActions";
 import { connect } from "react-redux";
 import { getExpenses } from "../../actions/expenses";
-import getYearSummary from "../common/GetYearSummary";
+import getYearSummary from "../common/getYearSummary";
 
 export class ExpenseByCategory extends Component {
   state = {
@@ -64,7 +63,6 @@ export class ExpenseByCategory extends Component {
     }
   }
   render() {
-    const classes = this.props.classes;
     const expenseYears = this.getExpenseYears(this.props.expenses);
     const expenseCategories = this.getExpenseCategories(this.props.expenses);
     return (
