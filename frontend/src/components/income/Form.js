@@ -30,7 +30,6 @@ import { addIncome } from "../../actions/incomes";
 const styles = {
   root: {
     maxWidth: 500,
-    minWidth: 100,
     margin: "auto",
   },
   bullet: {
@@ -50,7 +49,6 @@ const styles = {
   },
   formControl: {
     margin: "auto",
-    minWidth: 100,
     width: "100%",
   },
   categoryLabel: {
