@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { ResponsiveBar } from "@nivo/bar";
-import ExpenseYearSelect from "../../actions/ExpenseYearSelect";
+import GraphActions from "../../actions/GraphActions";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { getExpenses } from "../../actions/expenses";
@@ -56,7 +56,7 @@ export class ExpenseByOwner extends Component {
     //console.log(expenseOwners);
     return (
       <div style={{ height: "500px", width: "100%" }}>
-        <ExpenseYearSelect years={expenseYears} />
+        <GraphActions years={expenseYears} />
         <ResponsiveBar
           data={this.state.graphData}
           keys={expenseOwners}
