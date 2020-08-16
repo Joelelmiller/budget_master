@@ -70,6 +70,8 @@ export class ExpenseByCategory extends Component {
           keys={expenseCategories}
           layout={this.props.barLayout}
           grouping={this.props.barGrouping}
+          xname={"Date"}
+          yname={"Category"}
         />
       </div>
     );

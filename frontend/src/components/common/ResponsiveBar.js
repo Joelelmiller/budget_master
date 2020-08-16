@@ -6,6 +6,8 @@ export default function ResponsiveBar(config) {
   const grouping = config.grouping;
   const layout = config.layout;
   const keys = config.keys;
+  const xname = config.xname;
+  const yname = config.yname;
   return (
     <Fragment>
       <Bar
@@ -26,7 +28,7 @@ export default function ResponsiveBar(config) {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: "Date",
+          legend: xname,
           legendPosition: "middle",
           legendOffset: 32,
         }}
@@ -34,7 +36,7 @@ export default function ResponsiveBar(config) {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: "Category",
+          legend: yname,
           legendPosition: "middle",
           legendOffset: -40,
         }}

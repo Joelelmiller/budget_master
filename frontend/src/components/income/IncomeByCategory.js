@@ -71,6 +71,8 @@ export class IncomeByCategory extends Component {
           keys={incomeCategories}
           layout={this.props.barLayout}
           grouping={this.props.barGrouping}
+          xname={"Date"}
+          yname={"Category"}
         />
       </div>
     );

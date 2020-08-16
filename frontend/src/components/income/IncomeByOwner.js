@@ -63,6 +63,8 @@ export class IncomeByOwner extends Component {
           keys={incomeOwners}
           layout={this.props.barLayout}
           grouping={this.props.barGrouping}
+          xname={"Date"}
+          yname={"Owner"}
         />
       </div>
     );
