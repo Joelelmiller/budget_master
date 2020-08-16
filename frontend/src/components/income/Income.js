@@ -1,4 +1,21 @@
-import React, { Component, Fragment } from "react";
+import React, { Component, Fragment, forwardRef } from "react";
+import AddBox from "@material-ui/icons/AddBox";
+import ArrowDownward from "@material-ui/icons/ArrowDownward";
+import Check from "@material-ui/icons/Check";
+import ChevronLeft from "@material-ui/icons/ChevronLeft";
+import ChevronRight from "@material-ui/icons/ChevronRight";
+import Clear from "@material-ui/icons/Clear";
+import DeleteOutline from "@material-ui/icons/DeleteOutline";
+import Edit from "@material-ui/icons/Edit";
+import FilterList from "@material-ui/icons/FilterList";
+import FirstPage from "@material-ui/icons/FirstPage";
+import LastPage from "@material-ui/icons/LastPage";
+import Remove from "@material-ui/icons/Remove";
+import Save from "@material-ui/icons/Save";
+import SaveAlt from "@material-ui/icons/SaveAlt";
+import Search from "@material-ui/icons/Search";
+import ViewColumn from "@material-ui/icons/ViewColumn";
+import MaterialTable from "material-table";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import {
@@ -12,296 +29,95 @@ import {
 } from "../../actions/incomes";
 
 export class Incomes extends Component {
-  state = {
-    name: "",
-    description: "",
-    income_date: "",
-    amount: 0,
-    category: "",
-    income_owner: "",
-  };
   static propTypes = {
     incomes: PropTypes.array.isRequired,
     getIncomes: PropTypes.func.isRequired,
     deleteIncome: PropTypes.func.isRequired,
-    editIncome: PropTypes.func.isRequired,
     updateIncome: PropTypes.func.isRequired,
-    cancelEdit: PropTypes.func.isRequired,
-    deletingIncome: PropTypes.func.isRequired,
-    cancelDelete: PropTypes.func.isRequired,
   };
 
-  componentDidUpdate(prevProps) {
-    if (this.props !== prevProps) {
-      const filteredRecord = this.props.incomes.filter(
-        (income) => income.isUpdatingRecord == true
-      );
-
-      if (filteredRecord.length > 0) {
-        const name = filteredRecord["0"].name;
-        const description = filteredRecord["0"].description;
-        const income_date = filteredRecord["0"].income_date;
-        const amount = filteredRecord["0"].amount;
-        const category = filteredRecord["0"].category;
-        const income_owner = filteredRecord["0"].income_owner;
-
-        this.setState({
-          name: name,
-          description: description,
-          income_date: income_date,
-          amount: amount,
-          category: category,
-          income_owner: income_owner,
-        });
-      }
-    }
-  }
   componentDidMount() {
     this.props.getIncomes();
   }
-
-  onSave = (incomes) => {
-    const {
-      name,
-      description,
-      income_date,
-      amount,
-      category,
-      income_owner,
-    } = this.state;
-
-    const income = {
-      name,
-      description,
-      income_date,
-      amount,
-      category,
-      income_owner,
-    };
-    //console.log(income);
-    this.props.updateIncome(incomes.id, income);
-  };
-
-  onChange = (e) => this.setState({ [e.target.name]: e.target.value });
   render() {
-    const renderTableRow = (incomes) => {
-      if (incomes.isUpdatingRecord == true) {
-        return (
-          <Fragment>
-            <td>
-              <div className="input-group input-group-sm mb-3">
-                <input
-                  type="text"
-                  name="name"
-                  className="form-control"
-                  aria-label="Sizing example input"
-                  aria-describedby="inputGroup-sizing-sm"
-                  defaultValue={incomes.name}
-                  onChange={this.onChange}
-                />
-              </div>
-            </td>
-            <td>
-              <div className="input-group input-group-sm mb-3">
-                <input
-                  type="text"
-                  name="category"
-                  className="form-control"
-                  aria-label="Sizing example input"
-                  aria-describedby="inputGroup-sizing-sm"
-                  defaultValue={incomes.category}
-                  onChange={this.onChange}
-                />
-              </div>
-            </td>
-            <td>
-              <div className="input-group input-group-sm mb-3">
-                <input
-                  type="text"
-                  name="income_date"
-                  className="form-control"
-                  aria-label="Sizing example input"
-                  aria-describedby="inputGroup-sizing-sm"
-                  defaultValue={incomes.income_date}
-                  onChange={this.onChange}
-                />
-              </div>
-            </td>
-
-            <td>
-              <div className="input-group input-group-sm mb-3">
-                <input
-                  type="text"
-                  name="amount"
-                  className="form-control"
-                  aria-label="Sizing example input"
-                  aria-describedby="inputGroup-sizing-sm"
-                  defaultValue={incomes.amount}
-                  onChange={this.onChange}
-                />
-              </div>
-            </td>
-            <td>
-              <div className="input-group input-group-sm mb-3">
-                <input
-                  type="text"
-                  name="income_owner"
-                  className="form-control"
-                  aria-label="Sizing example input"
-                  aria-describedby="inputGroup-sizing-sm"
-                  defaultValue={incomes.income_owner}
-                  onChange={this.onChange}
-                />
-              </div>
-            </td>
-            <td>
-              <div className="input-group input-group-sm mb-3">
-                <input
-                  type="text"
-                  name="description"
-                  className="form-control"
-                  aria-label="Sizing example input"
-                  aria-describedby="inputGroup-sizing-sm"
-                  defaultValue={incomes.description}
-                  onChange={this.onChange}
-                />
-              </div>
-            </td>
-
-            <td>
-              <button
-                onClick={() => this.onSave(incomes)}
-                //onClick={() => console.log("hoogaaboo")}
-                className="btn btn-outline-success btn-sm"
-              >
-                Save
-              </button>
-            </td>
-            <td>
-              <button
-                onClick={this.props.cancelEdit.bind(this, incomes.id)}
-                className="btn btn-outline-danger btn-sm"
-              >
-                Cancel
-              </button>
-            </td>
-          </Fragment>
-        );
-      } else if (incomes.isDeletingRecord == true) {
-        return (
-          <Fragment>
-            <td>{incomes.name}</td>
-            <td>{incomes.category}</td>
-            <td>{incomes.income_date}</td>
-            <td>{incomes.amount}</td>
-            <td>{incomes.income_owner}</td>
-            <td>{incomes.description}</td>
-
-            <td>
-              <button
-                onClick={this.props.deleteIncome.bind(this, incomes.id)}
-                className="btn btn-outline-success btn-sm"
-              >
-                Yes
-              </button>
-            </td>
-            <td>
-              <button
-                onClick={this.props.cancelDelete.bind(this, incomes.id)}
-                className="btn btn-outline-danger btn-sm"
-              >
-                Cancel
-              </button>
-            </td>
-          </Fragment>
-        );
-      } else if (
-        this.props.isDeleting == true ||
-        this.props.isUpdating == true
-      ) {
-        return (
-          <Fragment>
-            <td>{incomes.name}</td>
-            <td>{incomes.category}</td>
-            <td>{incomes.income_date}</td>
-            <td>{incomes.amount}</td>
-            <td>{incomes.income_owner}</td>
-            <td>{incomes.description}</td>
-            <td>
-              <button
-                onClick={this.props.editIncome.bind(this, incomes.id)}
-                className="btn btn-outline-primary btn-sm"
-                disabled={true}
-              >
-                Edit
-              </button>
-            </td>
-            <td>
-              <button
-                onClick={this.props.deletingIncome.bind(this, incomes.id)}
-                className="btn btn-outline-danger btn-sm"
-                disabled={true}
-              >
-                Delete
-              </button>
-            </td>
-          </Fragment>
-        );
-      } else {
-        return (
-          <Fragment>
-            <td>{incomes.name}</td>
-            <td>{incomes.category}</td>
-            <td>{incomes.income_date}</td>
-            <td>{incomes.amount}</td>
-            <td>{incomes.income_owner}</td>
-            <td>{incomes.description}</td>
-            <td>
-              <button
-                onClick={this.props.editIncome.bind(this, incomes.id)}
-                className="btn btn-outline-primary btn-sm"
-              >
-                Edit
-              </button>
-            </td>
-            <td>
-              <button
-                //onClick={this.props.deleteIncome.bind(this, incomes.id)}
-                onClick={this.props.deletingIncome.bind(this, incomes.id)}
-                className="btn btn-outline-danger btn-sm"
-              >
-                Delete
-              </button>
-            </td>
-          </Fragment>
-        );
-      }
+    const tableIcons = {
+      Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
+      Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
+      Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+      Delete: forwardRef((props, ref) => (
+        <DeleteOutline {...props} ref={ref} />
+      )),
+      DetailPanel: forwardRef((props, ref) => (
+        <ChevronRight {...props} ref={ref} />
+      )),
+      Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
+      Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
+      Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
+      FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
+      LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
+      NextPage: forwardRef((props, ref) => (
+        <ChevronRight {...props} ref={ref} />
+      )),
+      PreviousPage: forwardRef((props, ref) => (
+        <ChevronLeft {...props} ref={ref} />
+      )),
+      ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
+      Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
+      SortArrow: forwardRef((props, ref) => (
+        <ArrowDownward {...props} ref={ref} />
+      )),
+      ThirdStateCheck: forwardRef((props, ref) => (
+        <Remove {...props} ref={ref} />
+      )),
+      ViewColumn: forwardRef((props, ref) => (
+        <ViewColumn {...props} ref={ref} />
+      )),
     };
     return (
-      <Fragment>
-        <h2>Incomes</h2>
-        <div style={{ height: "200px" }} className="overflow-auto">
-          <table className="table table-striped table-hover">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Date</th>
-                <th>Amount</th>
-                <th>Owner</th>
-                <th>Description</th>
-                <th />
-              </tr>
-            </thead>
+      <div style={{ maxWidth: "100%" }}>
+        <MaterialTable
+          columns={[
+            { title: "Name", field: "name" },
+            { title: "Category", field: "category" },
+            { title: "Date", field: "income_date", type: "date" },
+            { title: "Amount", field: "amount", type: "numeric" },
+            { title: "Owner", field: "income_owner" },
+            { title: "Desrciption", field: "description" },
+          ]}
+          data={this.props.incomes}
+          title="Incomes"
+          options={{
+            filtering: true,
+          }}
+          icons={tableIcons}
+          editable={{
+            onRowUpdate: (newData, oldData) =>
+              new Promise((resolve, reject) => {
+                setTimeout(() => {
+                  const dataUpdate = [...this.props.incomes];
+                  const index = oldData.tableData.id;
+                  dataUpdate[index] = newData;
+                  //console.log(newData);
+                  this.props.updateIncome(newData.id, newData);
 
-            <tbody>
-              {this.props.incomes.map((incomes) => (
-                <tr key={incomes.id}>{renderTableRow(incomes)}</tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </Fragment>
+                  resolve();
+                }, 1000);
+              }),
+            onRowDelete: (oldData) =>
+              new Promise((resolve, reject) => {
+                setTimeout(() => {
+                  const dataDelete = [...this.props.incomes];
+                  const index = oldData.tableData.id;
+                  dataDelete.splice(index, 1);
+                  //console.log(oldData.id);
+                  this.props.deleteIncome(oldData.id);
+
+                  resolve();
+                }, 1000);
+              }),
+          }}
+        />
+      </div>
     );
   }
 }
@@ -309,16 +125,10 @@ export class Incomes extends Component {
 //maps redux state from reducers to props
 const mapStateToProps = (state) => ({
   incomes: state.incomes.incomes,
-  isUpdating: state.incomes.isUpdating,
-  isDeleting: state.incomes.isDeleting,
 });
 
 export default connect(mapStateToProps, {
   getIncomes,
   deleteIncome,
-  editIncome,
   updateIncome,
-  cancelEdit,
-  deletingIncome,
-  cancelDelete,
 })(Incomes);
