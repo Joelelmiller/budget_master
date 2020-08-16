@@ -21,13 +21,14 @@ import BarChartIcon from "@material-ui/icons/BarChart";
 import Link from "@material-ui/core/Link";
 import AccessibilityNewIcon from "@material-ui/icons/AccessibilityNew";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
-import Alerts from "./Alerts";
 
 import { Route, Switch, Link as RouterLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import AddExpense from "../expenses/AddExpense";
 import AddIncome from "../income/AddIncome";
+import Expenses from "../expenses/Expenses";
+import Income from "../income/Income";
 import ExpenseByCategory from "../expenses/ExpenseByCategory";
 import ExpenseByOwner from "../expenses/ExpenseByOwner";
 import IncomeByCategory from "../income/IncomeByCategory";
@@ -129,6 +130,20 @@ export default function AppDrawer() {
         <Link
           underline="none"
           component={RouterLink}
+          to="/manage-income"
+          color="inherit"
+        >
+          <ListItem button>
+            <ListItemIcon>
+              <MonetizationOnIcon />
+            </ListItemIcon>
+            <ListItemText primary="Manage Income" />
+          </ListItem>
+        </Link>
+
+        <Link
+          underline="none"
+          component={RouterLink}
           to="/monthly-income-by-category"
           color="inherit"
         >
@@ -161,6 +176,19 @@ export default function AppDrawer() {
               <CreditCardIcon />
             </ListItemIcon>
             <ListItemText primary="Enter Expense" />
+          </ListItem>
+        </Link>
+        <Link
+          underline="none"
+          component={RouterLink}
+          to="/manage-expenses"
+          color="inherit"
+        >
+          <ListItem button>
+            <ListItemIcon>
+              <CreditCardIcon />
+            </ListItemIcon>
+            <ListItemText primary="Manage Expenses" />
           </ListItem>
         </Link>
         <Link
@@ -303,6 +331,8 @@ export default function AppDrawer() {
             path="/monthly-income-by-owner"
             component={IncomeByOwner}
           />
+          <PrivateRoute exact path="/manage-expenses" component={Expenses} />
+          <PrivateRoute exact path="/manage-income" component={Income} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
         </Switch>
