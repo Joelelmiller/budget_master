@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import Form from "./Form";
-import Expenses from "./Expenses";
+import Expenses from "./Expenses2";
 
 export default function AddExpense() {
   return (
