@@ -70,30 +70,34 @@ export default function GraphActions(years) {
           })}
         </Select>
       </FormControl>
-      <InputLabel id="barGroupingLabel">Bar Grouping</InputLabel>
-      <Select
-        className={classes.graphButtons}
-        labelId="barGroupingLabel"
-        id="grouping"
-        name="grouping"
-        value={graphs.barGrouping}
-        onChange={handleGrouping}
-      >
-        <MenuItem value={"stacked"}>Stacked</MenuItem>
-        <MenuItem value={"grouped"}>Grouped</MenuItem>
-      </Select>
-      <InputLabel id="barLayoutLabel">Bar Layout</InputLabel>
-      <Select
-        className={classes.graphButtons}
-        labelId="barLayoutLabel"
-        id="layout"
-        name="layout"
-        value={graphs.barLayout}
-        onChange={handleLayout}
-      >
-        <MenuItem value={"vertical"}>Vertical</MenuItem>
-        <MenuItem value={"horizontal"}>Horizontal</MenuItem>
-      </Select>
+      <FormControl className={classes.formControl}>
+        <InputLabel id="barGroupingLabel">Bar Grouping</InputLabel>
+        <Select
+          className={classes.graphButtons}
+          labelId="barGroupingLabel"
+          id="grouping"
+          name="grouping"
+          value={graphs.barGrouping}
+          onChange={handleGrouping}
+        >
+          <MenuItem value={"stacked"}>Stacked</MenuItem>
+          <MenuItem value={"grouped"}>Grouped</MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl className={classes.formControl}>
+        <InputLabel id="barLayoutLabel">Bar Layout</InputLabel>
+        <Select
+          className={classes.graphButtons}
+          labelId="barLayoutLabel"
+          id="layout"
+          name="layout"
+          value={graphs.barLayout}
+          onChange={handleLayout}
+        >
+          <MenuItem value={"vertical"}>Vertical</MenuItem>
+          <MenuItem value={"horizontal"}>Horizontal</MenuItem>
+        </Select>
+      </FormControl>
     </div>
   );
 }
