@@ -15,6 +15,7 @@ import Save from "@material-ui/icons/Save";
 import SaveAlt from "@material-ui/icons/SaveAlt";
 import Search from "@material-ui/icons/Search";
 import ViewColumn from "@material-ui/icons/ViewColumn";
+import Typography from "@material-ui/core/Typography";
 import MaterialTable from "material-table";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -75,19 +76,48 @@ export class Expenses extends Component {
     };
     return (
       <div style={{ maxWidth: "100%" }}>
+        <Typography variant="h4" gutterBottom>
+          Manage Expenses
+        </Typography>
         <MaterialTable
           columns={[
             { title: "Name", field: "name" },
-            { title: "Category", field: "category" },
-            { title: "Date", field: "expense_date", type: "date" },
+            {
+              title: "Category",
+              field: "category",
+              hidden: true,
+              hiddenByColumnsButton: true,
+            },
+            {
+              title: "Date",
+              field: "expense_date",
+              type: "date",
+              hidden: true,
+              hiddenByColumnsButton: true,
+            },
             { title: "Amount", field: "amount", type: "numeric" },
-            { title: "Owner", field: "expense_owner" },
-            { title: "Desrciption", field: "description" },
+            {
+              title: "Owner",
+              field: "expense_owner",
+              hidden: true,
+              hiddenByColumnsButton: true,
+            },
+            {
+              title: "Desrciption",
+              field: "description",
+              hidden: true,
+              hiddenByColumnsButton: true,
+            },
           ]}
           data={this.props.expenses}
           title="Expenses"
           options={{
             filtering: true,
+            columnsButton: true,
+            pageSize: 10,
+            pageSizeOptions: [10, 25, 50],
+            searchFieldAlignment: "left",
+            showTitle: false,
           }}
           icons={tableIcons}
           editable={{

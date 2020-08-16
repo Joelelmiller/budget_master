@@ -14,6 +14,7 @@ import Remove from "@material-ui/icons/Remove";
 import Save from "@material-ui/icons/Save";
 import SaveAlt from "@material-ui/icons/SaveAlt";
 import Search from "@material-ui/icons/Search";
+import Typography from "@material-ui/core/Typography";
 import ViewColumn from "@material-ui/icons/ViewColumn";
 import MaterialTable from "material-table";
 import { connect } from "react-redux";
@@ -67,19 +68,48 @@ export class Incomes extends Component {
     };
     return (
       <div style={{ maxWidth: "100%" }}>
+        <Typography variant="h4" gutterBottom>
+          Manage Income
+        </Typography>
         <MaterialTable
           columns={[
             { title: "Name", field: "name" },
-            { title: "Category", field: "category" },
-            { title: "Date", field: "income_date", type: "date" },
+            {
+              title: "Category",
+              field: "category",
+              hidden: true,
+              hiddenByColumnsButton: true,
+            },
+            {
+              title: "Date",
+              field: "income_date",
+              type: "date",
+              hidden: true,
+              hiddenByColumnsButton: true,
+            },
             { title: "Amount", field: "amount", type: "numeric" },
-            { title: "Owner", field: "income_owner" },
-            { title: "Desrciption", field: "description" },
+            {
+              title: "Owner",
+              field: "income_owner",
+              hidden: true,
+              hiddenByColumnsButton: true,
+            },
+            {
+              title: "Desrciption",
+              field: "description",
+              hidden: true,
+              hiddenByColumnsButton: true,
+            },
           ]}
           data={this.props.incomes}
           title="Incomes"
           options={{
             filtering: true,
+            columnsButton: true,
+            pageSize: 10,
+            pageSizeOptions: [10, 25, 50],
+            searchFieldAlignment: "left",
+            showTitle: false,
           }}
           icons={tableIcons}
           editable={{
