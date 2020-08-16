@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Typography from "@material-ui/core/Typography";
 import ResponsiveBar from "../common/ResponsiveBar";
 import GraphActions from "../../actions/GraphActions";
 import { connect } from "react-redux";
@@ -67,6 +68,9 @@ export class ExpenseByOwner extends Component {
     //console.log(expenseOwners);
     return (
       <div style={{ height: "500px", width: "100%" }}>
+        <Typography variant="h4" gutterBottom>
+          Expenses by Owner
+        </Typography>
         <GraphActions years={expenseYears} />
         <ResponsiveBar
           data={this.state.graphData}
