@@ -52,6 +52,16 @@ export class ExpenseByCategory extends Component {
   }
   componentDidMount() {
     this.props.getExpenses();
+    if (this.props.expenseSummaryYear !== "") {
+      const data = getYearSummary(
+        this.props.expenses,
+        "category",
+        "amount",
+        "expense_date",
+        this.props.expenseSummaryYear
+      );
+      this.setState({ graphData: data });
+    }
   }
   render() {
     const classes = this.props.classes;
