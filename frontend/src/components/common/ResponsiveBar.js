@@ -54,7 +54,7 @@ export default function ResponsiveBar(config) {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: xname,
+          legend: null,
           legendPosition: "middle",
           legendOffset: 32,
         }}

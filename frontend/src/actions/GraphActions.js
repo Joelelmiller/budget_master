@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { Fragment } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_SUMMARY_YEAR, SET_BAR_LAYOUT, SET_BAR_GROUPING } from "./types";
 
@@ -24,8 +25,7 @@ export default function GraphActions(years) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const graphs = useSelector((state) => state.graphs);
-  //console.log(expenses);
-
+  const matched = useMediaQuery("(min-width:600px)");
   const handleYear = (event) => {
     dispatch({
       type: SET_SUMMARY_YEAR,
@@ -46,30 +46,8 @@ export default function GraphActions(years) {
       payload: event.target.value,
     });
   };
-
-  return (
-    <div>
-      <FormControl className={classes.formControl}>
-        <InputLabel id="selectYear-label">Year</InputLabel>
-        <Select
-          fullWidth={true}
-          labelId="selectYear-label"
-          id="demo-simple-select-autowidth"
-          value={graphs.summaryYear}
-          onChange={handleYear}
-        >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          {years["years"].map((year) => {
-            return (
-              <MenuItem key={year} value={year}>
-                {year}
-              </MenuItem>
-            );
-          })}
-        </Select>
-      </FormControl>
+  const desktopControls = (
+    <Fragment>
       <FormControl className={classes.formControl}>
         <InputLabel id="barGroupingLabel">Bar Grouping</InputLabel>
         <Select
@@ -98,6 +76,33 @@ export default function GraphActions(years) {
           <MenuItem value={"horizontal"}>Horizontal</MenuItem>
         </Select>
       </FormControl>
+    </Fragment>
+  );
+
+  return (
+    <div>
+      <FormControl className={classes.formControl}>
+        <InputLabel id="selectYear-label">Year</InputLabel>
+        <Select
+          fullWidth={true}
+          labelId="selectYear-label"
+          id="demo-simple-select-autowidth"
+          value={graphs.summaryYear}
+          onChange={handleYear}
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          {years["years"].map((year) => {
+            return (
+              <MenuItem key={year} value={year}>
+                {year}
+              </MenuItem>
+            );
+          })}
+        </Select>
+      </FormControl>
+      {matched ? desktopControls : null}
     </div>
   );
 }
