@@ -285,6 +285,7 @@ export default function AppDrawer() {
         variant="persistent"
         anchor="left"
         open={open}
+        onClick={handleDrawerClose}
         classes={{
           paper: classes.drawerPaper,
         }}
@@ -307,35 +308,36 @@ export default function AppDrawer() {
         })}
       >
         <div className={classes.drawerHeader} />
-
-        <Switch>
-          <PrivateRoute exact path="/" component={AddExpense} />
-          <PrivateRoute exact path="/income" component={AddIncome} />
-          <PrivateRoute
-            exact
-            path="/monthly-expense-by-category"
-            component={ExpenseByCategory}
-          />
-          <PrivateRoute
-            exact
-            path="/monthly-expense-by-owner"
-            component={ExpenseByOwner}
-          />
-          <PrivateRoute
-            exact
-            path="/monthly-income-by-category"
-            component={IncomeByCategory}
-          />
-          <PrivateRoute
-            exact
-            path="/monthly-income-by-owner"
-            component={IncomeByOwner}
-          />
-          <PrivateRoute exact path="/manage-expenses" component={Expenses} />
-          <PrivateRoute exact path="/manage-income" component={Income} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
-        </Switch>
+        <div onClick={handleDrawerClose}>
+          <Switch>
+            <PrivateRoute exact path="/" component={AddExpense} />
+            <PrivateRoute exact path="/income" component={AddIncome} />
+            <PrivateRoute
+              exact
+              path="/monthly-expense-by-category"
+              component={ExpenseByCategory}
+            />
+            <PrivateRoute
+              exact
+              path="/monthly-expense-by-owner"
+              component={ExpenseByOwner}
+            />
+            <PrivateRoute
+              exact
+              path="/monthly-income-by-category"
+              component={IncomeByCategory}
+            />
+            <PrivateRoute
+              exact
+              path="/monthly-income-by-owner"
+              component={IncomeByOwner}
+            />
+            <PrivateRoute exact path="/manage-expenses" component={Expenses} />
+            <PrivateRoute exact path="/manage-income" component={Income} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+          </Switch>
+        </div>
       </main>
     </div>
   );
