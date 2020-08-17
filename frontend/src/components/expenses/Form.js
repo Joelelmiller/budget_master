@@ -30,6 +30,7 @@ import { addExpense } from "../../actions/expenses";
 const styles = {
   root: {
     margin: "auto",
+    maxWidth: 500,
   },
   bullet: {
     display: "inline-block",
