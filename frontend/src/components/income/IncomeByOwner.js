@@ -41,7 +41,8 @@ export class IncomeByOwner extends Component {
           "income_owner",
           "amount",
           "income_date",
-          this.props.incomeSummaryYear
+          this.props.incomeSummaryYear,
+          "bar"
         );
         //console.log(data);
         this.setState({ graphData: data });
@@ -61,14 +62,18 @@ export class IncomeByOwner extends Component {
         <Typography variant="h4" gutterBottom>
           Income by Owner
         </Typography>
-        <GraphActions years={incomeYears} />
+        <GraphActions
+          years={incomeYears}
+          graph="IncomeOwner"
+          categories={this.props.categories}
+        />
         <ResponsiveBar
           data={this.state.graphData}
           keys={incomeOwners}
           layout={this.props.barLayout}
           grouping={this.props.barGrouping}
           xname={"Date"}
-          yname={"Owner"}
+          yname={"Amount"}
         />
       </div>
     );
@@ -81,6 +86,7 @@ const mapStateToProps = (state) => ({
   incomeSummaryYear: state.graphs.summaryYear,
   barLayout: state.graphs.barLayout,
   barGrouping: state.graphs.barGrouping,
+  categories: state.graphs.categories,
 });
 
 export default connect(mapStateToProps, { getIncomes })(IncomeByOwner);

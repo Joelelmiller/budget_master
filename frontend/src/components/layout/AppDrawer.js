@@ -33,9 +33,11 @@ import ExpenseByCategory from "../expenses/ExpenseByCategory";
 import ExpenseByOwner from "../expenses/ExpenseByOwner";
 import IncomeByCategory from "../income/IncomeByCategory";
 import IncomeByOwner from "../income/IncomeByOwner";
+import IncomeVsExpense from "../graphs/IncomeVsExpense";
 import Login from "../accounts/Login";
 import Register from "../accounts/Register";
 import PrivateRoute from "../common/PrivateRoute";
+import ResponsiveLine from "../common/ResponsiveLine";
 import LogOut from "./LogOut";
 
 const drawerWidth = 240;
@@ -114,6 +116,20 @@ export default function AppDrawer() {
   const authLinks = (
     <Fragment>
       <List>
+        <Link
+          underline="none"
+          component={RouterLink}
+          to="/income-vs-expenses"
+          color="inherit"
+        >
+          <ListItem button>
+            <ListItemIcon>
+              <MonetizationOnIcon />
+            </ListItemIcon>
+            <ListItemText primary="Expenses Vs Income" />
+          </ListItem>
+        </Link>
+        <Divider />
         <Link
           underline="none"
           component={RouterLink}
@@ -312,6 +328,11 @@ export default function AppDrawer() {
           <Switch>
             <PrivateRoute exact path="/" component={AddExpense} />
             <PrivateRoute exact path="/income" component={AddIncome} />
+            <PrivateRoute
+              exact
+              path="/income-vs-expenses"
+              component={IncomeVsExpense}
+            />
             <PrivateRoute
               exact
               path="/monthly-expense-by-category"

@@ -97,6 +97,29 @@ export default function GraphActions(props) {
       </FormControl>
     </Fragment>
   );
+  const categoryFilter = (
+    <Fragment>
+      <FormControl className={classes.formControl}>
+        <InputLabel id="selectCategory-label">Category</InputLabel>
+        <Select
+          autoWidth={true}
+          labelId="selectCategory-label"
+          id="categorySelect"
+          value={graphs.categories}
+          onChange={handleCategory}
+          multiple
+        >
+          {props.categories.map((category) => {
+            return (
+              <MenuItem key={category} value={category}>
+                {category}
+              </MenuItem>
+            );
+          })}
+        </Select>
+      </FormControl>
+    </Fragment>
+  );
 
   return (
     <div>
@@ -121,26 +144,12 @@ export default function GraphActions(props) {
           })}
         </Select>
       </FormControl>
-      <FormControl className={classes.formControl}>
-        <InputLabel id="selectCategory-label">Category</InputLabel>
-        <Select
-          autoWidth={true}
-          labelId="selectCategory-label"
-          id="categorySelect"
-          value={graphs.categories}
-          onChange={handleCategory}
-          multiple
-        >
-          {props.categories.map((category) => {
-            return (
-              <MenuItem key={category} value={category}>
-                {category}
-              </MenuItem>
-            );
-          })}
-        </Select>
-      </FormControl>
-      {matched ? desktopControls : null}
+      {(props.graph == "IncomeVsExpense") |
+      (props.graph == "ExpenseOwner") |
+      (props.graph == "IncomeOwner")
+        ? null
+        : categoryFilter}
+      {!matched | (props.graph == "IncomeVsExpense") ? null : desktopControls}
     </div>
   );
 }
