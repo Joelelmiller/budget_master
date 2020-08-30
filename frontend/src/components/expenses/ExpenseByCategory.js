@@ -42,7 +42,8 @@ export class ExpenseByCategory extends Component {
           "category",
           "amount",
           "expense_date",
-          this.props.expenseSummaryYear
+          this.props.expenseSummaryYear,
+          "bar"
         );
         this.setState({ graphData: data });
       }
@@ -59,7 +60,8 @@ export class ExpenseByCategory extends Component {
         "category",
         "amount",
         "expense_date",
-        this.props.expenseSummaryYear
+        this.props.expenseSummaryYear,
+        "bar"
       );
       this.setState({ graphData: data });
     }
@@ -80,14 +82,18 @@ export class ExpenseByCategory extends Component {
         <Typography variant="h4" gutterBottom>
           Expenses by Category
         </Typography>
-        <GraphActions years={expenseYears} categories={expenseCategories} />
+        <GraphActions
+          years={expenseYears}
+          categories={expenseCategories}
+          graph="ExpenseCategory"
+        />
         <ResponsiveBar
           data={this.state.graphData}
           keys={categoryKeys}
           layout={this.props.barLayout}
           grouping={this.props.barGrouping}
           xname={"Date"}
-          yname={"Category"}
+          yname={"Amount"}
         />
       </div>
     );

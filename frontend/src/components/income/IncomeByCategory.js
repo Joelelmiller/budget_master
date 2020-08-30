@@ -42,7 +42,8 @@ export class IncomeByCategory extends Component {
           "category",
           "amount",
           "income_date",
-          this.props.incomeSummaryYear
+          this.props.incomeSummaryYear,
+          "bar"
         );
         this.setState({ graphData: data });
       }
@@ -59,7 +60,8 @@ export class IncomeByCategory extends Component {
         "category",
         "amount",
         "income_date",
-        this.props.incomeSummaryYear
+        this.props.incomeSummaryYear,
+        "bar"
       );
       this.setState({ graphData: data });
     }
@@ -80,14 +82,18 @@ export class IncomeByCategory extends Component {
         <Typography variant="h4" gutterBottom>
           Incomes by Category
         </Typography>
-        <GraphActions years={incomeYears} categories={incomeCategories} />
+        <GraphActions
+          years={incomeYears}
+          categories={incomeCategories}
+          graph="IncomeCategory"
+        />
         <ResponsiveBar
           data={this.state.graphData}
           keys={categoryKeys}
           layout={this.props.barLayout}
           grouping={this.props.barGrouping}
           xname={"Date"}
-          yname={"Category"}
+          yname={"Amount"}
         />
       </div>
     );
