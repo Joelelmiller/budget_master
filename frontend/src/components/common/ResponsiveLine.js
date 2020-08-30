@@ -10,7 +10,7 @@ export default function ResponsiveLine(props) {
     <div style={{ height: "500px", width: "100%" }}>
       <Line
         data={props.data}
-        margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
+        margin={{ top: 20, right: 0, bottom: 50, left: 40 }}
         xScale={{ type: "point" }}
         yScale={{
           type: "linear",
@@ -26,7 +26,7 @@ export default function ResponsiveLine(props) {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: "Date",
+          legend: null,
           legendOffset: 36,
           legendPosition: "middle",
         }}
@@ -35,7 +35,7 @@ export default function ResponsiveLine(props) {
           tickSize: 5,
           tickPadding: 5,
           tickRotation: 0,
-          legend: "count",
+          legend: null,
           legendOffset: -40,
           legendPosition: "middle",
         }}
