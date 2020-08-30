@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -31,6 +31,14 @@ export default function GraphActions(props) {
   const dispatch = useDispatch();
   const graphs = useSelector((state) => state.graphs);
   const matched = useMediaQuery("(min-width:600px)");
+  useEffect(() => {
+    return () => {
+      dispatch({
+        type: SET_BAR_CATEGORY,
+        payload: [],
+      });
+    };
+  }, []);
   const handleYear = (event) => {
     dispatch({
       type: SET_SUMMARY_YEAR,
