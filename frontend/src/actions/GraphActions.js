@@ -116,7 +116,6 @@ export default function GraphActions(props) {
       <FormControl className={classes.formControl}>
         <InputLabel id="selectCategory-label">Category</InputLabel>
         <Select
-          fullWidth={true}
           autoWidth={true}
           labelId="selectCategory-label"
           id="categorySelect"
