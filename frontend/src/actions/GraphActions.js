@@ -117,6 +117,7 @@ export default function GraphActions(props) {
         <InputLabel id="selectCategory-label">Category</InputLabel>
         <Select
           fullWidth={true}
+          autoWidth={true}
           labelId="selectCategory-label"
           id="categorySelect"
           value={graphs.categories}
