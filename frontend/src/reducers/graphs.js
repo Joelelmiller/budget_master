@@ -9,7 +9,7 @@ const initalState = {
   barLayout: "vertical",
   barGrouping: "stacked",
   summaryYear: "",
-  category: "",
+  categories: [],
 };
 
 export default function (state = initalState, action) {
@@ -33,7 +33,7 @@ export default function (state = initalState, action) {
     case SET_BAR_CATEGORY:
       return {
         ...state,
-        category: action.payload,
+        categories: action.payload,
       };
     default:
       return state;

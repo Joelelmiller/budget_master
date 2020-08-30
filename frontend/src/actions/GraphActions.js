@@ -119,12 +119,10 @@ export default function GraphActions(props) {
           fullWidth={true}
           labelId="selectCategory-label"
           id="categorySelect"
-          value={graphs.category}
+          value={graphs.categories}
           onChange={handleCategory}
+          multiple
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
           {props.categories.map((category) => {
             return (
               <MenuItem key={category} value={category}>

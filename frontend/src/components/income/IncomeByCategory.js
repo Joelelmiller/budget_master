@@ -70,10 +70,10 @@ export class IncomeByCategory extends Component {
   render() {
     const incomeYears = this.getIncomeYears(this.props.incomes);
     const incomeCategories = this.state.categories;
-    if (this.props.category === "") {
+    if (this.props.categories.length === 0) {
       var categoryKeys = incomeCategories;
     } else {
-      var categoryKeys = [this.props.category];
+      var categoryKeys = this.props.categories;
     }
     return (
       <div style={{ height: "500px", width: "100%" }}>
@@ -100,7 +100,7 @@ const mapStateToProps = (state) => ({
   incomeSummaryYear: state.graphs.summaryYear,
   barLayout: state.graphs.barLayout,
   barGrouping: state.graphs.barGrouping,
-  category: state.graphs.category,
+  categories: state.graphs.categories,
 });
 
 export default connect(mapStateToProps, { getIncomes, getIncomeCategories })(
