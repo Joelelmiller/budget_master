@@ -47,7 +47,7 @@ export default function ResponsiveLine(props) {
         pointLabel="y"
         pointLabelYOffset={-12}
         useMesh={true}
-        legends={[]}
+        legends={null}
       />
     </div>
   );
