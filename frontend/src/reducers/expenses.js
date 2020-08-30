@@ -8,12 +8,14 @@ import {
   DELETING_EXPENSE,
   DELETING_EXPENSE_CANCELLED,
   SET_EXPENSE_SUMMARY_YEAR,
+  GET_EXPENSE_CATEGORIES,
 } from "../actions/types.js";
 
 const initalState = {
   expenses: [],
   isUpdating: false,
   expenseSummaryYear: "",
+  categories: [],
 };
 
 const updatingObject = (id, expenses, obj) => {
@@ -121,6 +123,11 @@ export default function (state = initalState, action) {
         ...state,
         expenses: cancelledRecords,
         isUpdating: false,
+      };
+    case GET_EXPENSE_CATEGORIES:
+      return {
+        ...state,
+        categories: action.payload,
       };
 
     default:

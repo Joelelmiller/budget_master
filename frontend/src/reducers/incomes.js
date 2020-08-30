@@ -8,12 +8,14 @@ import {
   DELETING_INCOME,
   DELETING_INCOME_CANCELLED,
   SET_INCOME_SUMMARY_YEAR,
+  GET_INCOME_CATEGORIES,
 } from "../actions/types.js";
 
 const initalState = {
   incomes: [],
   isUpdating: false,
   incomeSummaryYear: "",
+  categories: [],
 };
 
 const updatingObject = (id, incomes, obj) => {
@@ -120,6 +122,12 @@ export default function (state = initalState, action) {
         incomes: cancelledRecords,
         isUpdating: false,
       };
+    case GET_INCOME_CATEGORIES:
+      return {
+        ...state,
+        categories: action.payload,
+      };
+
     default:
       return state;
   }

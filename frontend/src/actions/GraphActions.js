@@ -6,7 +6,12 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useDispatch, useSelector } from "react-redux";
-import { SET_SUMMARY_YEAR, SET_BAR_LAYOUT, SET_BAR_GROUPING } from "./types";
+import {
+  SET_SUMMARY_YEAR,
+  SET_BAR_LAYOUT,
+  SET_BAR_GROUPING,
+  SET_BAR_CATEGORY,
+} from "./types";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -21,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function GraphActions(years) {
+export default function GraphActions(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const graphs = useSelector((state) => state.graphs);
@@ -43,6 +48,12 @@ export default function GraphActions(years) {
   const handleGrouping = (event) => {
     dispatch({
       type: SET_BAR_GROUPING,
+      payload: event.target.value,
+    });
+  };
+  const handleCategory = (event) => {
+    dispatch({
+      type: SET_BAR_CATEGORY,
       payload: event.target.value,
     });
   };
@@ -93,10 +104,31 @@ export default function GraphActions(years) {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          {years["years"].map((year) => {
+          {props.years.map((year) => {
             return (
               <MenuItem key={year} value={year}>
                 {year}
+              </MenuItem>
+            );
+          })}
+        </Select>
+      </FormControl>
+      <FormControl className={classes.formControl}>
+        <InputLabel id="selectCategory-label">Category</InputLabel>
+        <Select
+          fullWidth={true}
+          labelId="selectCategory-label"
+          id="categorySelect"
+          value={graphs.category}
+          onChange={handleCategory}
+        >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
+          {props.categories.map((category) => {
+            return (
+              <MenuItem key={category} value={category}>
+                {category}
               </MenuItem>
             );
           })}
