@@ -9,8 +9,9 @@ export default function ResponsiveLine(props) {
   return (
     <div style={{ height: "500px", width: "100%" }}>
       <Line
+        pointSize={8}
         data={props.data}
-        margin={{ top: 20, right: 0, bottom: 50, left: 40 }}
+        margin={{ top: 20, right: 15, bottom: 50, left: 40 }}
         xScale={{ type: "point" }}
         yScale={{
           type: "linear",
@@ -44,7 +45,7 @@ export default function ResponsiveLine(props) {
         pointColor={{ theme: "background" }}
         pointBorderWidth={2}
         pointBorderColor={{ from: "serieColor" }}
-        pointLabel="y"
+        pointLabel="Amount"
         pointLabelYOffset={-12}
         useMesh={true}
         legends={[]}
