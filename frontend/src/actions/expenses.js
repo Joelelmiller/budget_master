@@ -11,6 +11,7 @@ import {
   UPDATING_EXPENSE_CANCELLED,
   DELETING_EXPENSE,
   DELETING_EXPENSE_CANCELLED,
+  GET_EXPENSE_CATEGORIES,
 } from "./types";
 
 // GET EXPENSES
@@ -103,5 +104,13 @@ export const cancelDelete = (id) => (dispatch) => {
   dispatch({
     type: DELETING_EXPENSE_CANCELLED,
     payload: id,
+  });
+};
+
+// GET_EXPENSE_CATEGORIES
+export const getExpenseCategories = (categories) => (dispatch) => {
+  dispatch({
+    type: GET_EXPENSE_CATEGORIES,
+    payload: categories,
   });
 };

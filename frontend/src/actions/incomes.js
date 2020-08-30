@@ -11,6 +11,7 @@ import {
   UPDATING_INCOME_CANCELLED,
   DELETING_INCOME,
   DELETING_INCOME_CANCELLED,
+  GET_INCOME_CATEGORIES,
 } from "./types";
 
 // GET INCOMES
@@ -103,5 +104,13 @@ export const cancelDelete = (id) => (dispatch) => {
   dispatch({
     type: DELETING_INCOME_CANCELLED,
     payload: id,
+  });
+};
+
+// GET_INCOME_CATEGORIES
+export const getIncomeCategories = (categories) => (dispatch) => {
+  dispatch({
+    type: GET_INCOME_CATEGORIES,
+    payload: categories,
   });
 };

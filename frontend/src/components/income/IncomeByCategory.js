@@ -3,14 +3,15 @@ import Typography from "@material-ui/core/Typography";
 import ResponsiveBar from "../common/ResponsiveBar";
 import GraphActions from "../../actions/GraphActions";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { getIncomes } from "../../actions/incomes";
+import { getIncomes, getIncomeCategories } from "../../actions/incomes";
 import getYearSummary from "../common/getYearSummary";
 
 export class IncomeByCategory extends Component {
   state = {
     graphData: [],
+    categories: [],
   };
+
   getIncomeYears = (incomes) => {
     const years = [];
 
@@ -22,7 +23,6 @@ export class IncomeByCategory extends Component {
 
     return years.sort();
   };
-
   getIncomeCategories = (incomes) => {
     const categories = [];
 
@@ -46,6 +46,9 @@ export class IncomeByCategory extends Component {
         );
         this.setState({ graphData: data });
       }
+      const categories = this.getIncomeCategories(this.props.incomes);
+      this.setState({ categories: categories });
+      this.props.getIncomeCategories(categories);
     }
   }
   componentDidMount() {
@@ -60,19 +63,27 @@ export class IncomeByCategory extends Component {
       );
       this.setState({ graphData: data });
     }
+    const categories = this.getIncomeCategories(this.props.incomes);
+    this.setState({ categories: categories });
+    this.props.getIncomeCategories(categories);
   }
   render() {
     const incomeYears = this.getIncomeYears(this.props.incomes);
-    const incomeCategories = this.getIncomeCategories(this.props.incomes);
+    const incomeCategories = this.state.categories;
+    if (this.props.categories.length === 0) {
+      var categoryKeys = incomeCategories;
+    } else {
+      var categoryKeys = this.props.categories;
+    }
     return (
       <div style={{ height: "500px", width: "100%" }}>
         <Typography variant="h4" gutterBottom>
-          Income by Category
+          Incomes by Category
         </Typography>
-        <GraphActions years={incomeYears} />
+        <GraphActions years={incomeYears} categories={incomeCategories} />
         <ResponsiveBar
           data={this.state.graphData}
-          keys={incomeCategories}
+          keys={categoryKeys}
           layout={this.props.barLayout}
           grouping={this.props.barGrouping}
           xname={"Date"}
@@ -89,6 +100,9 @@ const mapStateToProps = (state) => ({
   incomeSummaryYear: state.graphs.summaryYear,
   barLayout: state.graphs.barLayout,
   barGrouping: state.graphs.barGrouping,
+  categories: state.graphs.categories,
 });
 
-export default connect(mapStateToProps, { getIncomes })(IncomeByCategory);
+export default connect(mapStateToProps, { getIncomes, getIncomeCategories })(
+  IncomeByCategory
+);

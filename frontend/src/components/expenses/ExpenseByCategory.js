@@ -3,12 +3,13 @@ import Typography from "@material-ui/core/Typography";
 import ResponsiveBar from "../common/ResponsiveBar";
 import GraphActions from "../../actions/GraphActions";
 import { connect } from "react-redux";
-import { getExpenses } from "../../actions/expenses";
+import { getExpenses, getExpenseCategories } from "../../actions/expenses";
 import getYearSummary from "../common/getYearSummary";
 
 export class ExpenseByCategory extends Component {
   state = {
     graphData: [],
+    categories: [],
   };
 
   getExpenseYears = (expenses) => {
@@ -45,6 +46,9 @@ export class ExpenseByCategory extends Component {
         );
         this.setState({ graphData: data });
       }
+      const categories = this.getExpenseCategories(this.props.expenses);
+      this.setState({ categories: categories });
+      this.props.getExpenseCategories(categories);
     }
   }
   componentDidMount() {
@@ -59,19 +63,27 @@ export class ExpenseByCategory extends Component {
       );
       this.setState({ graphData: data });
     }
+    const categories = this.getExpenseCategories(this.props.expenses);
+    this.setState({ categories: categories });
+    this.props.getExpenseCategories(categories);
   }
   render() {
     const expenseYears = this.getExpenseYears(this.props.expenses);
-    const expenseCategories = this.getExpenseCategories(this.props.expenses);
+    const expenseCategories = this.state.categories;
+    if (this.props.categories.length === 0) {
+      var categoryKeys = expenseCategories;
+    } else {
+      var categoryKeys = this.props.categories;
+    }
     return (
       <div style={{ height: "500px", width: "100%" }}>
         <Typography variant="h4" gutterBottom>
           Expenses by Category
         </Typography>
-        <GraphActions years={expenseYears} />
+        <GraphActions years={expenseYears} categories={expenseCategories} />
         <ResponsiveBar
           data={this.state.graphData}
-          keys={expenseCategories}
+          keys={categoryKeys}
           layout={this.props.barLayout}
           grouping={this.props.barGrouping}
           xname={"Date"}
@@ -88,6 +100,9 @@ const mapStateToProps = (state) => ({
   expenseSummaryYear: state.graphs.summaryYear,
   barLayout: state.graphs.barLayout,
   barGrouping: state.graphs.barGrouping,
+  categories: state.graphs.categories,
 });
 
-export default connect(mapStateToProps, { getExpenses })(ExpenseByCategory);
+export default connect(mapStateToProps, { getExpenses, getExpenseCategories })(
+  ExpenseByCategory
+);
