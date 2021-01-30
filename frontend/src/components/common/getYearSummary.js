@@ -60,8 +60,12 @@ export default function getYearSummary(
         data.push({
           id: record[group_key],
           data: months.map((month) => {
-            if (month.month_num == record[date_key].substring(5, 7)) {
-              var y = parseFloat(record[agg_key]);
+            if (record[date_key].substring(0, 4) == year) {
+              if (month.month_num == record[date_key].substring(5, 7)) {
+                var y = parseFloat(record[agg_key]);
+              } else {
+                var y = 0;
+              }
             } else {
               var y = 0;
             }
@@ -77,8 +81,10 @@ export default function getYearSummary(
           if (d.id == record[group_key]) {
             const month_data = d.data;
             month_data.map((m) => {
-              if (m.month_num == record[date_key].substring(5, 7)) {
-                m.y += parseFloat(record[agg_key]);
+              if (record[date_key].substring(0, 4) == year) {
+                if (m.month_num == record[date_key].substring(5, 7)) {
+                  m.y += parseFloat(record[agg_key]);
+                }
               }
             });
           }

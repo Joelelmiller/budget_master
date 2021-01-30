@@ -1,0 +1,4 @@
+To run locally 
+- npm run dev
+- pipenv shell
+- python3 manage.py runserver

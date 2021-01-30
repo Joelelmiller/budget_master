@@ -119,6 +119,7 @@ export class IncomeVsExpense extends Component {
     } else {
       var categoryKeys = this.props.categories;
     }
+    console.log(this.state.graphData);
     return (
       <div style={{ height: "500px", width: "100%" }}>
         <Typography variant="h4" gutterBottom>
