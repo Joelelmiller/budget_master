@@ -8,6 +8,6 @@ spec:
     - name: http
       port: 8000
       nodePort: 30800
-      targetPort: budget-master-http
+      targetPort: budget-http
   selector:
     app: budget-master
