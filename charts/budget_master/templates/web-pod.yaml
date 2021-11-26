@@ -7,7 +7,7 @@ metadata:
 spec:
   containers:
     - name: budget-master
-      image: budget-master-app
+      image: budget-master-app:latest
       imagePullPolicy: Never
       ports:
         - containerPort: 8000
