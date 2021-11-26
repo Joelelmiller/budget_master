@@ -11,6 +11,6 @@ spec:
       imagePullPolicy: Never
       ports:
         - containerPort: 8000
-          name: "budget-master-http"
+          name: "budget-http"
   imagePullSecrets:
     - name: ecr-login
