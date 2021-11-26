@@ -1,16 +1,16 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: budget_master
+  name: budget-master
   labels:
-    app: budget_master
+    app: budget-master
 spec:
   containers:
-    - name: budget_master
-      image: budget_master_app
+    - name: budget-master
+      image: budget-master-app
       imagePullPolicy: Never
       ports:
         - containerPort: 8000
-          name: "budget_master-http"
+          name: "budget-master-http"
   imagePullSecrets:
     - name: ecr-login
