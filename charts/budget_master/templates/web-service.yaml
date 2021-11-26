@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: budget_master
+  name: budget-master
 spec:
   type: NodePort
   ports:
     - name: http
       port: 8000
       nodePort: 30800
-      targetPort: budget_master-http
+      targetPort: budget-master-http
   selector:
-    app: budget_master
+    app: budget-master
