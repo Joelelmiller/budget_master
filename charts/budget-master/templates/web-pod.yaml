@@ -1,16 +1,25 @@
-apiVersion: v1
-kind: Pod
+
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: budget-master
   labels:
     app: budget-master
 spec:
-  containers:
-    - name: budget-master
-      image: budget-master-app:latest
-      imagePullPolicy: Never
-      ports:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: budget-master
+  template:
+    metadata:
+      labels:
+        app: budget-master
+    spec:
+      containers:
+      - name: budget-master
+        image: budget-master
+        imagePullPolicy: Never
+        ports:
         - containerPort: 8000
           name: "budget-http"
-  imagePullSecrets:
-    - name: ecr-login
+
