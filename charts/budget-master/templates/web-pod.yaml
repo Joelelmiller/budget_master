@@ -17,8 +17,8 @@ spec:
     spec:
       containers:
       - name: budget-master
-        image: budget-master
-        imagePullPolicy: Never
+        image: bassmiller/pi-kube:budget-master
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8000
           name: "budget-http"
