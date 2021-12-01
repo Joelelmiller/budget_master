@@ -5,11 +5,6 @@ RUN apt-get update \
         postgresql-client \
     && rm -rf /var/lib/apt/lists/*
 
-ENV DB_HOST=10.0.0.24
-ENV DB_PORT=31236
-ENV DB_USER=postgres
-ENV DB_PASSWORD=testpassword
-
 WORKDIR /usr/src/app
 COPY requirements.txt ./
 RUN pip install -r requirements.txt

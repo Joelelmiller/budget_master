@@ -19,6 +19,27 @@ spec:
         image: bassmiller/pi-kube:budget-master
         imagePullPolicy: Always
         ports:
-        - containerPort: 8000
-          name: "budget-http"
+          - containerPort: 8000
+            name: "budget-http"
+        env:
+          - name: DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: postgres-credentials
+                key: POSTGRES-USER
+          - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: POSTGRES-PASSWORD
+          - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: POSTGRES-PORT
+          - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-credentials
+                  key: POSTGRES-HOST
 
