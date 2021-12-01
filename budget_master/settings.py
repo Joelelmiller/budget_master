@@ -25,7 +25,7 @@ SECRET_KEY = '(8hkgv$3+yu$o(rhw%#i6cjt0-9c37@co@r7xrc$w2e-h)+kev'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.0.0.24']
+ALLOWED_HOSTS = ['192.168.4.24']
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',)
